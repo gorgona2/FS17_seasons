@@ -171,7 +171,7 @@ function ssRepairable:repairUpdate(dt)
             -- Repair
             if ssVehicle:repair(self, storeItem) then
                 -- Show that it was repaired
-                local str = string.format(g_i18n:getText("SS_VEHICLE_REPAIRED"), vehicleName, g_i18n:formatMoney(repairCost, 0))
+                local str = string.format(g_i18n:getText("SS_VEHICLE_REPAIRED"), vehicleName, g_i18n.globalI18N:formatMoney(repairCost, 0))
                 g_currentMission:addIngameNotification(FSBaseMission.INGAME_NOTIFICATION_OK, str)
 
                 g_client:getServerConnection():sendEvent(ssRepairVehicleEvent:new(self))
@@ -187,7 +187,7 @@ function ssRepairable:repairUpdate(dt)
     if InputBinding.hasEvent(InputBinding.SEASONS_REPAIR_VEHICLE) then
         if g_currentMission:getTotalMoney() >= repairCost then
             local dialog = g_gui:showDialog("YesNoDialog")
-            local text = string.format(ssLang.getText("SS_REPAIR_DIALOG"), vehicleName, g_i18n:formatMoney(repairCost, 0))
+            local text = string.format(ssLang.getText("SS_REPAIR_DIALOG"), vehicleName, g_i18n.globalI18N:formatMoney(repairCost, 0))
 
             dialog.target:setCallback(doRepairCallback, self)
             dialog.target:setTitle(ssLang.getText("SS_REPAIR_DIALOG_TITLE"))
